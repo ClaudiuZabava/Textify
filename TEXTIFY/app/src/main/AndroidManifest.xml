@@ -12,6 +12,9 @@
         android:theme="@style/Theme.TEXTIFY"
         tools:targetApi="31">
         <activity
+            android:name=".SetupProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".OTPActivity"
             android:exported="false" />
         <activity
@@ -27,7 +30,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.TEXTIFY.NoActionBar"></activity>
+            android:theme="@style/Theme.TEXTIFY.NoActionBar" />
     </application>
 
 </manifest>

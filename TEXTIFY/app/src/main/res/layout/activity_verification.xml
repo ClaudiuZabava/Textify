@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <TextView
-        android:text="on this Email..."
+        android:text="on this number..."
         android:layout_margin="6dp"
         android:textSize="16sp"
         android:textStyle="normal"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/editNumber"
-                android:hint="Type your email in here..."
+                android:hint="Type your phone number in here..."
                 android:padding="10dp"
                 android:ems="1"
                 android:inputType="phone"

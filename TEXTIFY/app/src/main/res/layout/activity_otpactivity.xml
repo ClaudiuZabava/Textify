@@ -11,9 +11,11 @@
     tools:context=".OTPActivity">
     <ImageView
         android:src="@drawable/otppass"
+        android:paddingTop="20dp"
         android:layout_width="250dp"
         android:layout_height="250dp" />
     <TextView
+        android:id="@+id/phoneLble"
         android:text="Verify"
         android:textAlignment="center"
         android:textSize="25sp"
@@ -50,20 +52,25 @@
                 android:hint="@string/enter_otp_code_here"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:otp="1234"
-                app:otp_size="4"
-                app:otp_view_type="rectangle"
-                app:otp_item_width="60dp"
-                app:otp_item_height="60dp"
-                app:otp_item_radius="8dp"
-                app:otp_item_padding="12dp"
-                app:otp_item_background_color="@color/white"
-                app:otp_cursor_color="#000000"
-                app:otp_cursor_width="2dp"
-                app:otp_text_color="#000000"
-                app:otp_text_size="20sp"
-                app:otp_masking="true"
-                app:otp_secure_keyboard="true"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:inputType="number"
+                android:itemBackground="#EDEDED"
+                android:focusableInTouchMode="true"
+                app:OtpItemCount="6"
+                app:OtpLineColor="#AFAFAF"
+                app:OtpViewType="line"
+                android:paddingBottom="10dp"/>
+
+                <Button
+                    android:id="@+id/continue_btn01"
+                    android:text="Continue"
+                    android:textStyle="bold|normal"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#3777C7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
