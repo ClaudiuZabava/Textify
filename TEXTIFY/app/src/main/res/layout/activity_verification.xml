@@ -90,9 +90,9 @@
                 android:id="@+id/continueButton"
                 android:text="Continue"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textAllCaps="false"
-                app:backgroundTint="#01A9C0"
+                app:backgroundTint="#228C27"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

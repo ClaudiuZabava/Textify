@@ -22,6 +22,8 @@ class OTPActivity : AppCompatActivity() {
     var auth:FirebaseAuth? = null
     var dialog:ProgressDialog? = null
 
+    /* firebase - min. 35-38 */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOtpactivityBinding.inflate(layoutInflater)
