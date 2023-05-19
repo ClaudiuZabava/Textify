@@ -10,6 +10,7 @@
     android:layout_gravity="center"
     tools:context=".SetupProfileActivity">
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView"
         android:layout_marginTop="32dp"
         android:src="@drawable/avatar"
         android:layout_width="150dp"
@@ -49,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/editNumber"
+                android:id="@+id/nameBox"
                 android:hint="Type your Name"
                 android:padding="10dp"
                 android:ems="1"
