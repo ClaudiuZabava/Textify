@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="35db0084-d9c4-4a20-81b2-cc5efee81d2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEXTIFY/app/src/main/java/com/messager/textify/OTPActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/TEXTIFY/app/src/main/java/com/messager/textify/OTPActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEXTIFY/app/src/main/res/layout/activity_setup_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TEXTIFY/app/src/main/res/layout/activity_setup_profile.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
