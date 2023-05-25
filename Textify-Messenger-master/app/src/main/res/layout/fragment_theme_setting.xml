@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.themesetting.ThemeSettingFragment">
+
+    <View
+        android:id="@+id/settingtheme_tv_title"
+        android:layout_width="35dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#9B9ACB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/yes_btn"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingtheme_tv_title">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/settingtheme_tv_display"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display"
+                android:textColor="@color/del_msg_textcolor"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:paddingStart="20dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settingtheme_cl_theme"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:layout_below="@id/settingtheme_tv_display"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/settingtheme_iv_theme"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_bulb_0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:tint="@color/del_msg_textcolor"/>
+
+                <TextView
+                    android:id="@+id/settingscreen_tv_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Theme"
+                    android:textColor="@color/mainscreen_chat_board_tc"
+                    android:textSize="16sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="2dp"
+                    app:layout_constraintBottom_toTopOf="@id/settingscreen_tv_themevalue"
+                    app:layout_constraintTop_toTopOf="@id/settingtheme_iv_theme"
+                    app:layout_constraintStart_toEndOf="@id/settingtheme_iv_theme"/>
+
+                <TextView
+                    android:id="@+id/settingscreen_tv_themevalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Light"
+                    android:textColor="@color/del_msg_textcolor"
+                    android:textSize="14sp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintBottom_toBottomOf="@id/settingtheme_iv_theme"
+                    app:layout_constraintStart_toStartOf="@id/settingscreen_tv_theme"
+                    app:layout_constraintTop_toBottomOf="@id/settingscreen_tv_theme"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settingtheme_cl_wallpaper"
+                android:layout_width="match_parent"
+                android:padding="20dp"
+                android:layout_below="@id/settingtheme_cl_theme"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/settingtheme_iv_wallpaper"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_wallapaer_0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:tint="@color/del_msg_textcolor"/>
+
+                <TextView
+                    android:id="@+id/settingscreen_tv_wallpaper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wallpaper"
+                    android:textColor="@color/mainscreen_chat_board_tc"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="@id/settingtheme_iv_wallpaper"
+                    app:layout_constraintBottom_toBottomOf="@id/settingtheme_iv_wallpaper"
+                    app:layout_constraintStart_toEndOf="@id/settingtheme_iv_wallpaper"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="2dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
