@@ -15,5 +15,6 @@ data class Chat(
     var reply_to: String? = "",
     var reply_id: String? = "",
     var reply_pos: Long = 0,
-    var reply_text: String? = ""
+    var reply_text: String? = "",
+    var imageUrl: String? =""
 )

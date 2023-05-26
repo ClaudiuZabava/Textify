@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -37,6 +38,15 @@ class ChatAdapter(private val context: Context, private var chatList :List<Chat>
             val barSent = itemView.findViewById<View>(R.id.sent_reply_bar)
             val nameSent = itemView.findViewById<TextView>(R.id.sent_reply_name)
             val msgSent = itemView.findViewById<TextView>(R.id.sent_reply_msg)
+            val chatImage = itemView.findViewById<ImageView>(R.id.sent_iv_image)
+            if (!chat.imageUrl.isNullOrEmpty()) {
+                chatImage.visibility = View.VISIBLE
+                Glide.with(context)
+                    .load(chat.imageUrl)
+                    .into(chatImage)
+            } else {
+                chatImage.visibility = View.GONE
+            }
             if(chat.reply_attached && chat.del_for=="") {
                 cvSent.visibility = View.VISIBLE
                 msgSent.text = chat.reply_text
@@ -74,6 +84,15 @@ class ChatAdapter(private val context: Context, private var chatList :List<Chat>
             val barSent = itemView.findViewById<View>(R.id.received_reply_bar)
             val nameSent = itemView.findViewById<TextView>(R.id.received_reply_name)
             val msgSent = itemView.findViewById<TextView>(R.id.received_reply_msg)
+            val chatImage = itemView.findViewById<ImageView>(R.id.received_iv_image)
+            if (!chat.imageUrl.isNullOrEmpty()) {
+                chatImage.visibility = View.VISIBLE
+                Glide.with(context)
+                    .load(chat.imageUrl)
+                    .into(chatImage)
+            } else {
+                chatImage.visibility = View.GONE
+            }
             if(chat.reply_attached && chat.del_for=="") {
                 cvSent.visibility = View.VISIBLE
                 msgSent.text = chat.reply_text
@@ -124,6 +143,7 @@ class ChatAdapter(private val context: Context, private var chatList :List<Chat>
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         if(getItemViewType(position)==VIEW_TYPE_RECEIVER) {
             holder.bindDataReceive(chatList[position])
+
         } else {
             holder.bindDataSent(chatList[position])
         }

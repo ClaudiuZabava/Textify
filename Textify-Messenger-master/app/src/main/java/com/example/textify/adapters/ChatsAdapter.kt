@@ -34,6 +34,15 @@ class ChatsAdapter(private val context: Context, private val user: List<ChatRoom
             val tick = itemView.findViewById<AppCompatImageView>(R.id.chatscreen_rv_chats_tickmark)
             val msgcount = itemView.findViewById<CardView>(R.id.chatscreen_rv_chats_cv_msgcount)
             val unread_count = itemView.findViewById<TextView>(R.id.chatscreen_rv_chats_mssgcount)
+            if(receiver.unread_count>0 )
+            {
+                tick.visibility = View.GONE
+            }
+            else
+            {
+                tick.visibility = View.VISIBLE
+            }
+
             if(receiver.receiver_id.equals(sender_id)) {
                 Glide
                     .with(context)

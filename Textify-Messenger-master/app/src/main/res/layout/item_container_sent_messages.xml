@@ -95,6 +95,17 @@
         android:paddingBottom="10dp"
         android:textColor="@color/chatscreen_sender_tc"
         android:textSize="16sp"/>
+        <ImageView
+            android:id="@+id/sent_iv_image"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:paddingStart="18dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="10dp"
+            android:visibility="gone" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

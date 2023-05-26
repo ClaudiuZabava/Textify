@@ -64,7 +64,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/ic_double_tick"
-            app:tint="#7EC3FF"/>
+            app:tint="#7EC3FF"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/chatscreen_rv_chats_tv_message"

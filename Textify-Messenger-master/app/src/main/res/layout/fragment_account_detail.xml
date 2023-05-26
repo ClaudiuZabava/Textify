@@ -137,7 +137,7 @@
                 app:boxBackgroundColor="@color/settingtheme_bottomsheet_bg"
                 app:hintTextColor="#1F74BA">
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/accountdetail_et_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -165,7 +165,7 @@
                     app:boxBackgroundColor="@color/settingtheme_bottomsheet_bg"
                     app:hintTextColor="#1F74BA">
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/accountdetail_et_dob"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -200,7 +200,7 @@
                 app:boxBackgroundColor="@color/settingtheme_bottomsheet_bg"
                 app:hintTextColor="#1F74BA">
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/accountdetail_et_phonenumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -227,7 +227,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         app:layout_constraintVertical_bias="1"
-        app:cardBackgroundColor="@color/intro_login_sheet_btn_color"
+        app:cardBackgroundColor="#1ED1FF"
         android:layout_gravity="center">
 
         <TextView

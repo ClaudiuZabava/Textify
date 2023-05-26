@@ -1,8 +1,12 @@
 package com.example.textify.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -31,10 +35,14 @@ import com.example.textify.viewmodels.ChatViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import org.json.JSONArray
 import org.json.JSONObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class ChatActivity : BaseActivity() {
 
@@ -50,8 +58,14 @@ class ChatActivity : BaseActivity() {
     private var delSetSender: HashMap<String,Chat> = HashMap()
     private var delSetReceiver: HashMap<String,Chat> = HashMap()
     private var replyPos: Long = 0
+    private var selectedChatImageUri: Uri? = null
     private lateinit var senderDetails: User
     private lateinit var receiverDetails: User
+
+    companion object {
+        private const val PICK_IMAGE_REQUEST = 101
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -134,7 +148,53 @@ class ChatActivity : BaseActivity() {
         binding.replyCancel.setOnClickListener {
             replyCancel()
         }
+        binding.chatscreenIvCamera.setOnClickListener {
+            chooseImageFromGallery()
+        }
     }
+
+    private fun chooseImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+            selectedChatImageUri = data.data
+            uploadChatImage()
+        }
+    }
+
+    private fun uploadChatImage() {
+        if (selectedChatImageUri == null) return
+
+        val filename = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/chat_images/$filename")
+
+        ref.putFile(selectedChatImageUri!!)
+            .addOnSuccessListener {
+                ref.downloadUrl.addOnSuccessListener { downloadUri ->
+                    sendMessage(downloadUri.toString())
+                }
+            }
+            .addOnFailureListener {
+                // Handle any errors
+            }
+    }
+
+//    private fun saveImageMessageToFirebase(imageUrl: String) {
+//        val message = Message(imageUrl, senderId, receiverId, System.currentTimeMillis() / 1000)
+//
+//        val ref = FirebaseDatabase.getInstance().getReference("/messages").push()
+//
+//        ref.setValue(message)
+//            .addOnSuccessListener {
+//                // Message saved successfully
+//                selectedChatImageUri = null
+//            }
+//    }
 
     private fun updateUnreadCount() {
         viewModel.updateReadCount()
@@ -289,7 +349,7 @@ class ChatActivity : BaseActivity() {
     }
 
 
-    private fun sendMessage() {
+    private fun sendMessage(imgUrl: String = "") {
         val text: String = binding.chatsreenEtWritemessage.text.toString().trim()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
         val dt: String = LocalDateTime.now().format(formatter)
@@ -306,8 +366,17 @@ class ChatActivity : BaseActivity() {
             replyBy = userId
             replyText = binding.replyMsg.text.toString()
         }
-        val chat = Chat("",senderId,text,dt,message_number,"text","Sent", false,"",ArrayList(),replyAttached,replyTo,replyBy,replyPos,replyText)
-        viewModel.sendMessage(chat)
+        if(imgUrl != "")
+        {
+            val chat = Chat("",senderId,text,dt,message_number,"text","Sent", false,"",ArrayList(),replyAttached,replyTo,replyBy,replyPos,replyText, imgUrl)
+            viewModel.sendMessage(chat)
+        }
+        else
+        {
+            val chat = Chat("",senderId,text,dt,message_number,"text","Sent", false,"",ArrayList(),replyAttached,replyTo,replyBy,replyPos,replyText)
+            viewModel.sendMessage(chat)
+        }
+
     }
 
     private fun showDeleteDialog() {

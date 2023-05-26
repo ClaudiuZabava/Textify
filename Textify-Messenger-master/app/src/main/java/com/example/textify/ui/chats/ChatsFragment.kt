@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.textify.activity.BaseFragments
 import com.example.textify.activity.ChatActivity
+import androidx.appcompat.widget.SearchView
 import com.example.textify.adapters.ChatsAdapter
 import com.example.textify.databinding.FragmentChatsBinding
 import com.example.textify.models.ChatRooms
@@ -37,11 +38,68 @@ class ChatsFragment : BaseFragments() {
         database.collection(Constants.KEY_COLLECTION_USER).document(senderid).addSnapshotListener { value, error ->
             sender = value?.toObject(User::class.java)!!
         }
+        val searchView = binding.chatscreenSearchView
         viewModel.chatLiveData.observe(viewLifecycleOwner) { state ->
             processChatList(state)
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (state is ScreenState.Success) {
+                        val filteredModelList: List<ChatRooms> = filter(state.data ?: listOf(), newText)
+                        processChatList(ScreenState.Success(filteredModelList))
+                    }
+                    return true
+                }
+
+                private fun filter(models: List<ChatRooms>, query: String?): List<ChatRooms> {
+                    val lowerCaseQuery = query?.toLowerCase()
+
+                    val filteredModelList = ArrayList<ChatRooms>()
+                    for (model in models) {
+                        val text = model.sender_name?.toLowerCase()
+                        if (text != null) {
+                            if (text.contains(lowerCaseQuery ?: "")) {
+                                filteredModelList.add(model)
+                            }
+                        }
+                    }
+                    return filteredModelList
+                }
+            })
+//            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//                override fun onQueryTextSubmit(query: String?): Boolean {
+//                    return false
+//                }
+//
+//                override fun onQueryTextChange(newText: String?): Boolean {
+//                    val filteredModelList: List<ChatRooms> = filter(state.data, newText)
+//                    adapter.updateList(filteredModelList)
+//                    return true
+//                }
+//
+//                private fun filter(models: List<ChatRooms>?, query: String?): List<ChatRooms> {
+//                    val lowerCaseQuery = query?.toLowerCase()
+//
+//                    val filteredModelList = ArrayList<ChatRooms>()
+//                    if (models != null) {
+//                        for (model in models) {
+//                            val text = model.receiver_name.toLowerCase()
+//                            if (text.contains(lowerCaseQuery)) {
+//                                filteredModelList.add(model)
+//                            }
+//                        }
+//                    }
+//                    return filteredModelList
+//                }
+//            })
         }
         return root
     }
+
+
 
     private fun processChatList(state: ScreenState<List<ChatRooms>?>) {
         when(state) {

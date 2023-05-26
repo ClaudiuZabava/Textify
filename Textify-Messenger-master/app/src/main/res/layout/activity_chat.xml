@@ -169,26 +169,12 @@
                                 android:textColor="@color/chatscreen_typingbox_tc"
                                 android:textColorHint="@color/del_msg_textcolor"
                                 android:textSize="16sp"
-                                app:layout_constraintEnd_toStartOf="@id/chatscreen_iv_pin"
+                                app:layout_constraintEnd_toStartOf="@id/chatscreen_iv_camera"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/chatscreen_iv_emoji"
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:ignore="TouchTargetSizeCheck" />
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/chatscreen_iv_pin"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginEnd="10dp"
-                                android:scaleType="centerCrop"
-                                android:layout_marginBottom="6dp"
-                                app:layout_constraintVertical_bias="1"
-                                android:src="@drawable/ic_attach_0"
-                                app:tint="#00AFBF"
-                                app:layout_constraintEnd_toStartOf="@id/chatscreen_iv_camera"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/chatscreen_iv_camera"
